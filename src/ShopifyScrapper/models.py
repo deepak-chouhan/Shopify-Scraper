@@ -1,21 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
-class Size(models.Model):
-    size = models.DecimalField(validators=[MinValueValidator(1)], max_digits=2, decimal_places=1)
-
-    def __str__(self) -> str:
-        return str(self.size)
-
-class StoreType(models.Model):
-    web_type = models.CharField(max_length=10, null=False)
-
-    def __str__(self):
-        return self.web_type
-
 class Website(models.Model):
     name = models.CharField(max_length=30, null=False)
-    web_type = models.ForeignKey(StoreType, on_delete=models.CASCADE, null=False, related_name="store_type")
     status = models.BooleanField(default=False)
 
     def __str__(self):
@@ -26,7 +13,10 @@ class Url(models.Model):
     website = models.ForeignKey(Website, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.url
+        return str(self.website)
+
+class Image(models.Model):
+    image_url = models.CharField(max_length=150)
 
 class Data(models.Model):
     website = models.ForeignKey(Website, on_delete=models.CASCADE)
