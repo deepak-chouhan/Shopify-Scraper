@@ -1,37 +1,64 @@
 from .models import *
 
-# TODO: Write Logic to Save the Products in Database
+# Helper Class for Saving Product
 class Product:
-    def __init__(self, product):
+    def __init__(self, product, website):
         self.product = product
-
+        self.website = website
         # Database objects
         self.Data_obj = None
-        self.Variant_obj = []
-        self.Image_obj = []
+    
+    def GetLink(self):
+        """
+        Return Link for Product
+        """
+        if self.website.store_url[-1] != "/":
+            return self.website.store_url + "/products/" + self.product["handle"]
+        return self.website.store_url + "products/" + self.product["handle"]
     
     def Data(self):
-        # TODO: Logic to Create Product Data Object
+        """
+        Save Product
+        """
         # Access attributes using self.product["<attribut>"])
-        print(self.product["id"])
-        print(self.product["title"])
-        print(self.product["handle"])
+        self.Data_obj = Data(
+            product_id = self.product["id"],
+            title = self.product["title"],
+            website = self.website,
+            created_at = self.product["created_at"],
+            updated_at = self.product["updated_at"],
+            retailer = self.product["vendor"],
+            product_type = self.product["product_type"],
+            url = self.GetLink(),
+        )
+        self.Data_obj.save()
     
     def Variants(self):
-        
-        # TODO: Logic to Create Variant Data Object and Save them in List
+        """
+        Save Products Variants
+        """
         if self.product["variants"] and len(self.product["variants"]) > 0:
-            for i, variant in enumerate(self.product["variants"]):
-                print("Variant", i)
-                print(variant["id"])
-                print(variant["title"])
-                print(variant["sku"])
-                if variant["featured_image"] != "null":
-                    print(variant["featured_image"]["src"])
+            for variant in self.product["variants"]:
+                variant_obj = Variant(
+                    variant_id = variant["id"],
+                    product = self.Data_obj,
+                    title = variant["title"],
+                    sku = variant["sku"] or None,
+                    featured_image = variant["featured_image"]["src"] or None,
+                    price = float(variant["price"]),
+                    created_at = variant["created_at"],
+                    updated_at = variant["updated_at"]
+                )
+                variant_obj.save()
 
     def ProductImages(self):
-
-        # TODO: Logic to Create Image Data Object and Save them in List
+        """
+        Save Product Images
+        """
         if self.product["images"] and len(self.product["images"]) > 0:
-            for i, image in enumerate(self.product["images"]):
-                print(i, image["src"], len(image["src"]))
+            for image in self.product["images"]:
+                image_obj = Image(
+                    image_url = image["src"],
+                    product = self.Data_obj
+                )
+                image_obj.save()

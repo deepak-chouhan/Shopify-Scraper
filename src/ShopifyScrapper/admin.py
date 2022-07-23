@@ -16,18 +16,22 @@ class UrlAdmin(admin.ModelAdmin):
     list_display = ("website", "url",)
 
 class VariantAdmin(admin.ModelAdmin):
-    list_display = ("title", "price")
+    list_display = ("variant_id", "title", "price", "product")
 
 class WebsiteAdmin(admin.ModelAdmin):
     list_display = ("name", "status",)
     inlines = [UrlInline]
 
 class DataAdmin(admin.ModelAdmin):
-    list_display = ("website", "title", "retailer", "product_type",)
+    list_display = ("product_id", "website", "title", "retailer", "product_type",)
     inlines = [ImageInline, VariantInline]
+
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ("image_url", "product")
 
 
 admin.site.register(Url, UrlAdmin)
 admin.site.register(Website, WebsiteAdmin)
 admin.site.register(Data, DataAdmin)
 admin.site.register(Variant, VariantAdmin)
+admin.site.register(Image, ImageAdmin)
