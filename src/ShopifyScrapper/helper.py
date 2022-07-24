@@ -69,7 +69,7 @@ def Scrape(urls):
     Scrape Data for given URL
 
     Args:
-        urls (string): Shopify Store Page URLS
+        urls (list): List of Shopify Store URLS
     """
     for url in urls:
         # TODO: Logic to restart scrapping every 5 min
