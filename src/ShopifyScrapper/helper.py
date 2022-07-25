@@ -1,5 +1,6 @@
 import requests
 from .models import *
+from django.http import HttpResponse
 
 # Helper Class for Saving Product
 class Product:
@@ -93,3 +94,10 @@ def Scrape(urls):
             else:
                 has_data = False
             page_no += 1
+
+
+def runScrape():
+    print("Started")
+    urls = Url.objects.filter(website__status=True)
+    Scrape(urls)
+    print("Finished")
