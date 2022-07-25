@@ -8,6 +8,11 @@ The web scraper will save the results in a database, and the subsequent scrape w
 
 ## DATABASE
 
+### WEBSITES
+This table stores the data about the website that needs to be scrapped, In consist of name of website, status wether to scrape or not, and the store url and other endpoints.
+
+![Website](./project-photos/websites_1.png)
+
 ### DATA TABLE
 All the Products are stored in the **Data** table with the attributes shown in the below pictre
 
