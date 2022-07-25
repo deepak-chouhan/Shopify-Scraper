@@ -5,7 +5,7 @@ from .helper import runScrape
 import schedule
 import time
 
-schedule.every(1).minutes.do(runScrape)
+schedule.every(4).minutes.do(runScrape)
 
 def getData(request):
     while True:
