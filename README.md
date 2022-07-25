@@ -6,7 +6,6 @@ The web scraper will save the results in a database, and the subsequent scrape w
 
 
 ## DATABASE
-#
 
 ### DATA TABLE
 All the Products are stored in the **Data** table with the attributes shown in the below pictre
