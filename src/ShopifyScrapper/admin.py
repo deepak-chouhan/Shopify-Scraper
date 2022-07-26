@@ -16,7 +16,7 @@ class UrlAdmin(admin.ModelAdmin):
     list_display = ("website", "url",)
 
 class VariantAdmin(admin.ModelAdmin):
-    list_display = ("variant_id", "title", "price", "product")
+    list_display = ("variant_id", "title", "price", "sku", "product")
 
 class WebsiteAdmin(admin.ModelAdmin):
     list_display = ("name", "status",)

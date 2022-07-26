@@ -46,7 +46,7 @@ class Product:
                     product = self.Data_obj,
                     title = variant["title"],
                     sku = variant["sku"] or "null",
-                    featured_image = variant["featured_image"]["src"] if variant["featured_image"] != None else None,
+                    featured_image = variant["featured_image"]["src"] if variant["featured_image"] != None else "null",
                     price = float(variant["price"]),
                     created_at = variant["created_at"],
                     updated_at = variant["updated_at"]
