@@ -1,6 +1,6 @@
 # Shopify Scrapper
 
-![](./project-photos/shopify-img.jpg)
+!["cover"](./project-photos/shopify-img.jpg)
 
 The Goal is to scrape any Shopify Store. This Scrapper allows you to add multiple stores and fetch data into database.
 
